@@ -1,6 +1,6 @@
 import BaseRepository from "./BaseRepository.js"
 
-export default class UserRepository extends BaseRepository {
+export default class AuthRepository extends BaseRepository {
   constructor(UserModel) {
     super(UserModel)
   }

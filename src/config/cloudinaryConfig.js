@@ -11,7 +11,6 @@ cloudinary.config({
 
 const uploadImage = (file)=> {
     return new Promise((resolve, reject) => {
-        console.log(file,'yeah we got in the cloudinary configuration')
       const uploaodStream = cloudinary.uploader.upload_stream(
         {
           folder: "Image_uploads",
@@ -27,9 +26,7 @@ const uploadImage = (file)=> {
             );
           }
           if (result) {
-            console.log(result,'this is the result we got in uploadPDF')
             const {secure_url, public_id} = result
-            console.log(secure_url, public_id,'-=-=-=-==-=-=--=-=-=-=-=-=-')
             return resolve({secure_url,public_id});
           }
         }

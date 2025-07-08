@@ -7,7 +7,6 @@ export default class AuthService{
     }
 
     async register({name, email, mobile, password }){
-        console.log(name,email,mobile,password,'this is the user data we got here')
         const existingUser = await this.userRepository.findByEmail(email);
 
         if(existingUser){
@@ -22,7 +21,6 @@ export default class AuthService{
     }
 
     async login({email,password}){
-        console.log('its herererererererererer',password)
         const user = await this.userRepository.findByEmail(email)
         if(!user){
             throw new AppError('Invalid credentials',401)

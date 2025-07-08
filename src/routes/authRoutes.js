@@ -1,13 +1,13 @@
 import express from 'express'
 import AuthController from '../controllers/authController.js'
-import UserModel from "../models/User.js";
-import UserRepository from "../repositories/AuthRepository.js";
+import authModel from '../models/User.js';
 import AuthService from "../services/AuthService.js";
+import AuthRepository from '../repositories/AuthRepository.js';
 
 
 const authRouter = express.Router()
 
-const userRepository = new UserRepository(UserModel);
+const userRepository = new AuthRepository(authModel);
 const authService = new AuthService(userRepository);
 
 authRouter.post('/register',AuthController.register(authService))

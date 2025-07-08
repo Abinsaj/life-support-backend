@@ -2,13 +2,13 @@ import uploadImage from "../config/cloudinaryConfig.js"
 import AppError from "../utils/AppError.js"
 
 export default class LiveClassService {
-  constructor(liveClassRepository, userRepository) {
+  constructor(liveClassRepository,authRepository ) {
     this.liveClassRepository = liveClassRepository
-    this.userRepository = userRepository
+    this.authRepository = authRepository
   }
 
   async createLiveClass(liveClassData) {
-    const instructor = await this.userRepository.findById(liveClassData.instructorId)
+    const instructor = await this.authRepository.findById(liveClassData.instructorId)
     if (!instructor) {
       throw new AppError("Instructor not found", 404)
     }
@@ -22,10 +22,7 @@ export default class LiveClassService {
 
     const liveClass = await this.liveClassRepository.create(liveClassData)
 
-    return await this.liveClassRepository.findById(liveClass._id, {
-      populate: "instructor",
-      select: "name email specialization",
-    })
+    return await this.liveClassRepository.findById(liveClass._id)
   }
 
   async getAllLiveClasses() {

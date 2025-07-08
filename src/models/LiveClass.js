@@ -34,4 +34,6 @@ const liveClassSchema = new mongoose.Schema(
   },
 )
 
-export default mongoose.model("LiveClass", liveClassSchema)
+const liveClassModel = mongoose.model("LiveClass",liveClassSchema)
+
+export default liveClassModel;
