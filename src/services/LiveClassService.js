@@ -17,6 +17,9 @@ export default class LiveClassService {
       throw new AppError("Only doctors can create live classes", 403)
     }
     const upload = await uploadImage(liveClassData.image);
+    if(!upload){
+        throw new AppError('Cloudinary Failed, please configure it')
+    }
     liveClassData.image = upload.secure_url
 
 
