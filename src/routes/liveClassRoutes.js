@@ -1,5 +1,5 @@
 import express from "express"
-import LiveClassController from "../controllers/LiveClassController.js"
+import LiveClassController from "../controllers/liveClassController.js"
 import LiveClassRepository from "../repositories/LiveClassRepository.js"
 import LiveClassService from "../services/LiveClassService.js"
 import liveClassModel from "../models/LiveClass.js"
