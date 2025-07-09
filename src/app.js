@@ -9,9 +9,12 @@ const app = express();
 
 app.use(express.json());
 app.use(morgan('dev'));
+
+const allowedOrigins = ['http://localhost:3000', 'https://life-support-frontend.vercel.app'];
+
 app.use(
     cors({
-      origin: process.env.FRONTEND_URL || "http://localhost:3000",
+      origin: allowedOrigins,
       credentials: true,
     }),
   )
