@@ -6,6 +6,7 @@ import liveClassModel from "../models/LiveClass.js"
 import multer from 'multer';
 import AuthRepository from "../repositories/AuthRepository.js"
 import authModel from "../models/User.js"
+import { checkRole, verifyToken } from "../middlewares/authMiddleware.js"
 
 const liveClassRouter = express.Router()
 
@@ -17,7 +18,7 @@ const authRepository = new AuthRepository(authModel)
 const liveClassService = new LiveClassService(liveClassRepository,authRepository)
 
 liveClassRouter.get("/", LiveClassController.getAllLiveClasses(liveClassService))
-liveClassRouter.post("/",upload.single("image"),LiveClassController.createLiveClass(liveClassService),)
+liveClassRouter.post("/",upload.single("image"),verifyToken,checkRole('doctor'),LiveClassController.createLiveClass(liveClassService),)
 
 
 export default liveClassRouter
